@@ -1,34 +1,39 @@
 # Sequra
 
-The following part contains an architectual diagram of the solution to the test. 
+The following section contains an architectural diagram of the solution for the assignment.
 
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/ac3f325c-c7c8-4599-bf87-8e820843a52a">
 
-The attempt was to capture the dataflow used in the assignment and try and make the solution as robust as possible. 
+This diagram captures the data flow utilized in the solution. The design choices aim to create a robust, scalable, and maintainable solution.
 
-A few points of considerations in case there are questions regarding design choices.
+Key Design Considerations
+1. Why Use COPY Command Instead of Direct Ingestion?
 
-- 1. Why use copy instead of diret ingestions
- 
-While working on this solution I ran into a few issues with direct conntction to RedShift
- - Network and Security Configurations: Redshift clusters are usually deployed in a VPC, and accessing them requires proper network setup, including security groups and VPC settings.
- - Even after properly configuring the Redshift Connector I noticed that compared to S3 the upload speed was significanlty slower on my which providing the increase in the datasize may present challanges
+During the development of this solution, I encountered several challenges with direct connections to Redshift, which influenced the decision to use the COPY command:
 
-Due to the resons above I decided to save data in the S3 bucket as it probide a more reliable and quicker data transfer.
+Network and Security Configurations: Redshift clusters are typically deployed within a VPC (Virtual Private Cloud), requiring proper network setups, including security group and VPC configurations. Establishing and maintaining direct connectivity with Redshift can be complex.
 
-- 2. Storing of processed and unprocessed files on S3.
+Performance: Even after configuring the Redshift Connector, I observed that the data upload speed to Redshift was significantly slower compared to uploading to S3. This is particularly concerning as the dataset grows, which could lead to performance bottlenecks.
 
-Although the goal of this test was defined in a way that can be solved with a limited amount of data from initial json, I belived using S3 as a datalake and storing both processed and unprocessed results brings more advantages. As the team matures instead of adjusting the pipeline every time we need a new piece of data its easier to normalise the json and store the results as separate tables under the star schema. 
+Given these challenges, I opted to store the data in S3 first and then load it into Redshift using the COPY command. This approach provides a more reliable and faster method for data ingestion, particularly for large datasets.
 
-S3 is designed as a pay per use mode and supports virtually unlimited storage, so using it to store the normalised schema at the cost of storing more data that requred matches the requrement for providing the scalable solution 
+2. Storing Processed and Unprocessed Files in S3
 
+Although the problem statement could be solved with a limited dataset (from the initial JSON files), I opted to use S3 as a data lake to store both processed and unprocessed data. This decision provides several advantages:
 
-- 3. Running Tests in two steps
+Scalability: As the data team matures and new data requirements emerge, it becomes easier to normalize the incoming JSON data and store the results in a structured format, such as a star schema. This eliminates the need to continually adjust the pipeline for each new data request.
 
-In the digram we run tests at multiple stages. First when we import the data to Redshift by comparing the schemas and the row counts and later after the imports with the DBT. 
+Cost Efficiency: S3 operates on a pay-per-use model and offers virtually unlimited storage capacity. By storing both raw and processed data, we can maintain scalability while ensuring that the additional storage costs remain manageable.
 
-The resons behind this is in order to not overstress the DAG (by running only the basic checks) and leveraging dbt by using standartised tests that can be recycled on multiple tables and ETLS.
+This setup allows the pipeline to scale as the data grows and makes it more adaptable to future data requirements.
 
+3. Running Tests in Two Steps
+
+In the diagram, you’ll notice tests are run at two stages:
+
+Step 1: Basic tests are run when importing the data into Redshift, where we compare schemas and row counts to ensure data integrity.
+Step 2: More advanced tests are executed via DBT after the data is loaded. These tests leverage DBT’s standardized testing capabilities, allowing us to reuse tests across multiple tables and ETL processes.
+The reason for splitting the tests into two stages is to avoid overloading the DAG during data ingestion. Running lightweight checks early in the process ensures quick feedback, while DBT provides more thorough testing in later stages, ensuring data quality across transformations.
 
 
 
