@@ -1,7 +1,7 @@
 # Sequra
 
-The following repository is my submisison to the test challange from the Sequra team. 
+This repository is my submission for the test challenge from the Sequra team.
 
-This repository consits of 4 parts but overall they represent a single solution based on storing and processing the data from the Spacex Launching Sites.
+It consists of four main components, which together form a complete solution for storing and processing data from the SpaceX Launch Sites.
 
-The design was based on the tasks mentioned in the original repository. 
+The design and implementation are based on the tasks outlined in the original test requirements.
