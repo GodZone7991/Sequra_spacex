@@ -7,7 +7,9 @@ The following section contains an architectural diagram of the solution for the 
 This diagram captures the data flow utilized in the solution. The design choices aim to create a robust, scalable, and maintainable solution.
 
 Key Design Considerations
-**1. Why Use COPY Command Instead of Direct Ingestion?
+
+
+**1. Why Use COPY Command Instead of Direct Ingestion?**
 
 During the development of this solution, I encountered several challenges with direct connections to Redshift, which influenced the decision to use the COPY command:
 
@@ -17,7 +19,7 @@ During the development of this solution, I encountered several challenges with d
 
 Given these challenges, I opted to store the data in S3 first and then load it into Redshift using the COPY command. This approach provides a more reliable and faster method for data ingestion, particularly for large datasets.
 
-**2. Storing Processed and Unprocessed Files in S3
+**2. Storing Processed and Unprocessed Files in S3**
 
 Although the problem statement could be solved with a limited dataset (from the initial JSON files), I opted to use S3 as a data lake to store both processed and unprocessed data. This decision provides several advantages:
 
@@ -27,7 +29,7 @@ Although the problem statement could be solved with a limited dataset (from the 
 
 This setup allows the pipeline to scale as the data grows and makes it more adaptable to future data requirements.
 
-**3. Running Tests in Two Steps
+**3. Running Tests in Two Steps**
 
 In the diagram, you’ll notice tests are run at two stages:
 
