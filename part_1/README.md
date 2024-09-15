@@ -2,6 +2,9 @@
 
 The following section contains an architectural diagram of the solution for the assignment.
 
+[Click here to view the architectural diagram on Miro](https://miro.com/app/board/uXjVLev8b7s=/?share_link_id=483449173593)
+
+
 <img width="1262" alt="image" src="https://github.com/user-attachments/assets/ac3f325c-c7c8-4599-bf87-8e820843a52a">
 
 This diagram captures the data flow utilized in the solution. The design choices aim to create a robust, scalable, and maintainable solution.
