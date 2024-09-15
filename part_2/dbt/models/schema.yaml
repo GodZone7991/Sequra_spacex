@@ -1,0 +1,35 @@
+# this file is used to define the standard tests that can be performed on the final dataframe
+# unique: Ensures that a column (e.g., launch_id in launches) contains only unique values.
+# not_null: Ensures that a column (e.g., launch_id, name, date_utc) does not contain any null values.
+# relationships: Ensures referential integrity between the cores table and the launches table.
+
+
+version: 2
+
+models:
+  - name: launches          # Reference the existing 'launches' table in Redshift
+    description: "SpaceX launches data in Redshift"
+    columns:
+      - name: launch_id
+        description: "Unique identifier for each launch"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Name of the launch"
+        tests:
+          - not_null
+      - name: date_utc
+        description: "UTC date of the launch"
+        tests:
+          - not_null
+      - name: rocket
+        description: "Rocket used in the launch"
+      - name: success
+        description: "Indicates if the launch was successful"
+
+  - name: cores             # Reference the existing 'cores' table in Redshift
+    description: "SpaceX cores data in Redshift"
+    columns:
+      - name: launch_id
+        description:

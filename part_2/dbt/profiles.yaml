@@ -1,0 +1,12 @@
+spacex_dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: redshift
+      host: your-redshift-host.amazonaws.com
+      user: your_user
+      password: your_password
+      dbname: your_db
+      schema: public
+      port: 5439
+ 
