@@ -1,6 +1,0 @@
-time,altitude,reason,launch_id
-33,,merlin engine failure,5eb87cd9ffd86e000604b32a
-301,289.0,harmonic oscillation leading to premature engine shutdown,5eb87cdaffd86e000604b32b
-140,35.0,residual stage-1 thrust led to collision between stage 1 and stage 2,5eb87cdbffd86e000604b32c
-139,40.0,helium tank overpressure lead to the second stage LOX tank explosion,5eb87ceeffd86e000604b341
--165180,0.0,"buckled liner in several of the COPV tanks, causing perforations that allowed liquid and/or solid oxygen to accumulate underneath the lining, which was ignited by friction.",5eb87cfbffd86e000604b34b
