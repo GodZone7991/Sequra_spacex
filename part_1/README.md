@@ -51,7 +51,7 @@ The data pipeline is orchestrated using Airflow, which coordinates each step fro
 
 **5. ETL vs ELT Approach**
 
-This pipeline might seem like its following the ELT approach since the transfomations on the graph are inidcated to happen after the data is uploaded to Redshift. However that refers to the future logic of transforming data to fit buisness usecase. The original peipline used in the assignment is of ETL type
+This pipeline might seem like its following the ELT approach since the transfomations on the graph are inidcated to happen after the data is uploaded to Redshift. However that refers to the future logic of transforming data to fit buisness usecase. The original peipline used in the assignment is of ETL type.
 
 
 **6. Future Scalability & Enhancements**
