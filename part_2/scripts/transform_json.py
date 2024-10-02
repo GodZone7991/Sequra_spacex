@@ -67,17 +67,6 @@ def main():
     failures_df = process_failures(data)
     payloads_df = process_payloads(data)
     
-    # Print sample data (replace with your preferred output method)
-    print("Launches DataFrame:")
-    print(launches_df.head())
-    print("\nDetails DataFrame:")
-    print(details_df.head())
-    print("\nCores DataFrame:")
-    print(cores_df.head())
-    print("\nFailures DataFrame:")
-    print(failures_df.head())
-    print("\nPayloads DataFrame:")
-    print(payloads_df.head())
 
 if __name__ == "__main__":
     main()
