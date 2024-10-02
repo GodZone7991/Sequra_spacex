@@ -1,0 +1,8 @@
+version: 1
+
+sources:
+  - name: dev
+    schema: public  # schema within the dev database
+    tables:
+      - name: cores
+      - name: launches

@@ -15,21 +15,21 @@ models:
         tests:
           - unique
           - not_null
-      - name: name
-        description: "Name of the launch"
-        tests:
-          - not_null
       - name: date_utc
         description: "UTC date of the launch"
         tests:
           - not_null
-      - name: rocket
-        description: "Rocket used in the launch"
-      - name: success
-        description: "Indicates if the launch was successful"
+          - expression_is_true:
+              expression: "date_utc > '2006-01-01'"      
+    
 
   - name: cores             # Reference the existing 'cores' table in Redshift
     description: "SpaceX cores data in Redshift"
     columns:
-      - name: launch_id
-        description:
+      - name: core
+        description: "Unique identifier for each core"
+        tests:
+          - unique
+          - not_null
+  
+        
