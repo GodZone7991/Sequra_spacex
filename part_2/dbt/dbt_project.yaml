@@ -1,13 +1,12 @@
-# dbt_project.yml
-
 name: 'spacex_dbt_project'
 version: '1.0.0'
 
-# Configuration for where dbt should find the schema.yml file
+# Specify where dbt should find your models and sources
 model-paths: ["models"]
+source-paths: ["models"]
 
-# Tests are run on the raw Redshift tables
+# Configuration for models
 models:
   spacex_dbt_project:
-    +schema: public    # Redshift schema where 'launches' and 'cores' tables exist
-    +materialized: table
+    +schema: public        # The Redshift schema where the dbt models will be materialized
+    +materialized: table   # Use 'table' to overwrite the data on each run

@@ -3,10 +3,9 @@ spacex_dbt_project:
   outputs:
     dev:
       type: redshift
-      host: your-redshift-host.amazonaws.com
-      user: your_user
-      password: your_password
-      dbname: your_db
-      schema: public
+      host: your-redshift-host.amazonaws.com  # Replace with actual Redshift host
+      user: your_user                        # Replace with actual Redshift user
+      password: your_password                # Replace with actual Redshift password
+      dbname: your_db                        # Replace with actual database name
+      schema: public                         # Ensure the schema matches where your tables are
       port: 5439
- 
